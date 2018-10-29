@@ -31,10 +31,12 @@ $ yarn add react@16.7.0-alpha.0 react-dom@16.7.0-alpha.0
 
 ```js
 import React from 'react';
+import parseMs from 'parse-ms';
 import useCountdown from 'react-use-countdown';
 
 function Example() {
-  const { seconds } = useCountdown(Date.now() + 10000);
+  const countdown = useCountdown(Date.now() + 10000);
+  const { seconds } = parseMs(countdown);
 
   return (
     <p>
