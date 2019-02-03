@@ -43,7 +43,7 @@ import parseMs from 'parse-ms';
 import useCountdown from 'react-use-countdown';
 
 function Example() {
-  const countdown = useCountdown(Date.now() + 10000);
+  const countdown = useCountdown(() => Date.now() + 10000);
   const { seconds } = parseMs(countdown);
 
   return (
