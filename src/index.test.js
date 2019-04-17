@@ -3,7 +3,7 @@ import React from 'react';
 import useCountdown from '.';
 
 const Test = ({ date }) => {
-  const timeLeft = useCountdown(() => date, () => date - 1000);
+  const timeLeft = useCountdown(() => date, { now: () => date - 1000 });
 
   return (
     <p>

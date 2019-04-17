@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 
-function useCountdown(date, now = () => Date.now()) {
+function useCountdown(date, options = {}) {
+  const { intervalTime = 1000, now = () => Date.now() } = options;
   const [timeLeft, setTimeLeft] = useState(
     () => new Date(date()) - new Date(now())
   );
 
   useEffect(() => {
-    if (timeLeft <= 0) {
-      return;
-    }
+    const interval = setInterval(() => {
+      setTimeLeft(current => {
+        if (current <= 0) {
+          clearInterval(interval);
 
-    const intervalTime = 1000;
-    const time = timeLeft % intervalTime || intervalTime;
+          return 0;
+        }
 
-    const timeout = setTimeout(
-      () => setTimeLeft(current => current - time),
-      time
-    );
+        return current - intervalTime;
+      });
+    }, intervalTime);
 
-    return () => clearTimeout(timeout);
-  }, [timeLeft]);
+    return () => clearInterval(interval);
+  }, [intervalTime]);
 
   return timeLeft;
 }
