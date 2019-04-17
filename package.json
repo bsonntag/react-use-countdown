@@ -32,7 +32,9 @@
       "lcov",
       "text"
     ],
-    "setupTestFrameworkScriptFile": "./jest-setup.js"
+    "setupFilesAfterEnv": [
+      "./jest-setup.js"
+    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
