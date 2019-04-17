@@ -3,15 +3,7 @@
 [![CircleCI](https://circleci.com/gh/bsonntag/react-use-countdown.svg?style=svg)](https://circleci.com/gh/bsonntag/react-use-countdown)
 [![Coverage Status](https://coveralls.io/repos/github/bsonntag/react-use-countdown/badge.svg?branch=master)](https://coveralls.io/github/bsonntag/react-use-countdown?branch=master)
 
-React hook for countdown state.
-
-## Disclaimer
-
-This module uses the upcoming [React Hooks API Proposal](https://reactjs.org/docs/hooks-intro.html)
-which is **subject to change** until released to a final version.
-
-This means that the API of this module is also subject to change.
-Please **don't** use it on a production application.
+React Hook for countdown state.
 
 ## Installation
 
@@ -27,12 +19,12 @@ Using yarn:
 $ yarn add react-use-countdown
 ```
 
-Since this module uses React's upcoming Hooks feature,
-to try this out you'll need to install the `16.8.0-alpha.1` version
+Since this module uses React's new [Hooks feature](https://reactjs.org/docs/hooks-intro.html),
+to try this out you'll need to install at least version `16.8.0`
 of `react` and `react-dom`:
 
 ```sh
-$ yarn add react@16.8.0-alpha.1 react-dom@16.8.0-alpha.1
+$ yarn add react@^16.8.0 react-dom@^16.8.0
 ```
 
 ## Usage
@@ -59,12 +51,19 @@ function Example() {
 ```js
 useCountdown(
   date: () => Date | string | number,
-  now?: () => Date | string | number
+  options?: {
+    intervalTime?: number,
+    now?: () => Date | string | number
+  }
 ): number
 ```
 
 Receives a function that returns a date and returns the number of milliseconds remaining until that date.
-Optionally receives a function that returns the current time as the second argument.
+
+Optionally receives:
+
+- `intervalTime`: the milliseconds between ticks, 1000 by default.
+- `now`: a function that returns the current time as the second argument.
 
 ## Contributing
 
