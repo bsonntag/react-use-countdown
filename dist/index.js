@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _react = require("react");
 
@@ -16,9 +16,13 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function useCountdown(date) {
-  var now = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _options$intervalTime = options.intervalTime,
+      intervalTime = _options$intervalTime === void 0 ? 1000 : _options$intervalTime,
+      _options$now = options.now,
+      now = _options$now === void 0 ? function () {
     return Date.now();
-  };
+  } : _options$now;
 
   var _useState = (0, _react.useState)(function () {
     return new Date(date()) - new Date(now());
@@ -28,23 +32,22 @@ function useCountdown(date) {
       setTimeLeft = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    if (timeLeft <= 0) {
-      return;
-    }
+    var interval = setInterval(function () {
+      setTimeLeft(function (current) {
+        if (current <= 0) {
+          clearInterval(interval);
+          return 0;
+        }
 
-    var intervalTime = 1000;
-    var time = timeLeft % intervalTime || intervalTime;
-    var timeout = setTimeout(function () {
-      return setTimeLeft(function (current) {
-        return current - time;
+        return current - intervalTime;
       });
-    }, time);
+    }, intervalTime);
     return function () {
-      return clearTimeout(timeout);
+      return clearInterval(interval);
     };
-  }, [timeLeft]);
+  }, [intervalTime]);
   return timeLeft;
 }
 
 var _default = useCountdown;
-exports.default = _default;
+exports["default"] = _default;
