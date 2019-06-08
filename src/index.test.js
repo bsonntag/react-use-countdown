@@ -1,4 +1,4 @@
-import { act, render, wait } from 'react-testing-library';
+import { act, render, wait } from '@testing-library/react';
 import React from 'react';
 import useCountdown from '.';
 
