@@ -1,7 +1,6 @@
 # react-use-countdown
 
 [![CircleCI](https://circleci.com/gh/bsonntag/react-use-countdown.svg?style=svg)](https://circleci.com/gh/bsonntag/react-use-countdown)
-[![Coverage Status](https://coveralls.io/repos/github/bsonntag/react-use-countdown/badge.svg?branch=master)](https://coveralls.io/github/bsonntag/react-use-countdown?branch=master)
 
 React Hook for countdown state.
 
