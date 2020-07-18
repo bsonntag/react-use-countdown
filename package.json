@@ -16,7 +16,8 @@
     "bundle": "rm -rf dist && babel src --out-dir dist --ignore src/**/*.test.js",
     "bundle:watch": "babel src --out-dir dist --watch --ignore src/**/*.test.js",
     "example": "parcel --out-dir build example/index.html",
-    "lint": "eslint .",
+    "format": "prettier --write .",
+    "lint": "eslint . && prettier --check .",
     "test": "jest",
     "test:watch": "jest --watch --notify",
     "version": "npm run bundle && git add dist"
@@ -41,9 +42,12 @@
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.4.7",
     "eslint": "^7.5.0",
+    "husky": "^4.2.5",
     "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
     "parcel": "^1.12.4",
     "parse-ms": "^2.1.0",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

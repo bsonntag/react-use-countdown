@@ -8,7 +8,7 @@ function useCountdown(date, options = {}) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(current => {
+      setTimeLeft((current) => {
         if (current <= 0) {
           clearInterval(interval);
 
