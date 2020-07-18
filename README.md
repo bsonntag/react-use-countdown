@@ -37,11 +37,7 @@ function Example() {
   const countdown = useCountdown(() => Date.now() + 10000);
   const { seconds } = parseMs(countdown);
 
-  return (
-    <p>
-      Hooked in {seconds}
-    </p>
-  );
+  return <p>Hooked in {seconds}</p>;
 }
 ```
 
