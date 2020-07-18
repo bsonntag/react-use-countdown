@@ -1,4 +1,4 @@
-import { act, render, wait } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 import useCountdown from '.';
 
@@ -9,18 +9,6 @@ const Test = ({ date }) => {
 };
 
 describe('useCountdown', () => {
-  const setInterval = global.setInterval;
-
-  beforeEach(() => {
-    global.setInterval = (callback, time) => {
-      return setInterval(() => act(callback), time);
-    };
-  });
-
-  afterEach(() => {
-    global.setInterval = setInterval;
-  });
-
   it('should render the initial time left', () => {
     const { container } = render(<Test date={Date.now() + 1000} />);
 
@@ -32,8 +20,11 @@ describe('useCountdown', () => {
 
     expect(container.firstChild.textContent).toBe('1000');
 
-    await wait(() => {
-      expect(container.firstChild.textContent).toBe('0');
-    });
+    await waitFor(
+      () => {
+        expect(container.firstChild.textContent).toBe('0');
+      },
+      { timeout: 2000 }
+    );
   });
 });
